@@ -40,7 +40,7 @@ class ResidencesSpiderSpider(scrapy.Spider):
         ville_name = response.meta.get('ville_name')
 
         regions_link = response.css('li.region > a::attr(href)').extract()
-        for i in range(0, len(regions)):
+        for i in range(0, len(regions_link)):
             yield Request(regions_link[i], callback=self.parse_region, meta={'region_link' : regions_link[i], 'ville_link': ville_link, 'ville_name': ville_name})
 
 
