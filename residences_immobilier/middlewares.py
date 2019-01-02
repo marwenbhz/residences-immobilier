@@ -135,10 +135,3 @@ class RandomUserAgentMiddleware(object):
         else:
             request.headers.setdefault('User-Agent', get_ua())
 
-    © 2019 GitHub, Inc.
-    Terms
-    Privacy
-    Security
-    Status
-    Help
-
