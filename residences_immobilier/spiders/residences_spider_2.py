@@ -9,7 +9,7 @@ from residences_immobilier.items import ResidencesImmobilierItem
 
 
 class ResidencesSpiderSpider(scrapy.Spider):
-    name = 'residences_spider'
+    name = 'residences_spider_2'
     allowed_domains = ['residences-immobilier.com']
     start_urls = ['https://www.residences-immobilier.com/fr/971/maisons/vente/studio/selection-biens-st-barthelemy-39042.html']
     '''
