@@ -10,5 +10,5 @@ import scrapy
 
 class ResidencesImmobilierItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    VILLE = scrapy.Field()
+    VILLE_LINK = scrapy.Field()
