@@ -43,7 +43,13 @@ class ResidencesSpiderSpider(scrapy.Spider):
         regions_name = response.css('li.region > a::text').extract()
 
         for i in range(0, len(regions_link)):
-            yield Request(regions_link[i], callback=self.parse_region, meta={'region_link' : regions_link[i], 'ville_link': ville_link, 'ville_name': ville_name, 'region_name': regions_name[i]})
+            yield Request(regions_link[i], callback=self.parse_region, meta =
+                {
+                'region_link' : regions_link[i], 
+                'ville_link': ville_link, 
+                'ville_name': ville_name, 
+                'region_name': regions_name[i]
+                })
 
 
     def parse_region(self, response):
@@ -51,8 +57,9 @@ class ResidencesSpiderSpider(scrapy.Spider):
         item = ResidencesImmobilierItem()
         item['VILLE_NAME'] = response.meta.get('ville_name')
         item['VILLE_LINK'] = response.meta.get('ville_link')
-        item['REGION_NAME'] = response.meta.get('region_name')    
-        item['REGION_LINK'] = response.meta.get('region_link')   
-
+        #item['REGION_NAME'] = response.meta.get('region_name')    
+        #item['REGION_LINK'] = response.meta.get('region_link')   
+        item['REGION_LINK'] = response.url
+        
         yield item
 
