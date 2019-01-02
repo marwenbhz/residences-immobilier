@@ -49,7 +49,7 @@ class ResidencesSpiderSpider(scrapy.Spider):
         item = ResidencesImmobilierItem()
         item['VILLE_NAME'] = response.meta.get('ville_name')
         item['VILLE_LINK'] = response.meta.get('ville_link')
-        #item['REGION_LINK'] = response.url
+        item['REGION_LINK'] = response.url
 
         yield item
 
