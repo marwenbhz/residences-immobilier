@@ -12,12 +12,12 @@ class ResidencesSpiderSpider(scrapy.Spider):
     name = 'residences_spider'
     allowed_domains = ['residences-immobilier.com']
     start_urls = ['https://www.residences-immobilier.com/fr/annonces.html']
-    '''
+
     custom_settings = {
     'LOG_FILE': 'logs/residences-immobilier.log',
     'LOG_LEVEL':'ERROR'
      }
-    '''
+
 
 
     def __init__(self, *args, **kwargs):
@@ -49,7 +49,7 @@ class ResidencesSpiderSpider(scrapy.Spider):
         item = ResidencesImmobilierItem()
         item['VILLE_NAME'] = response.meta.get('ville_name')
         item['VILLE_LINK'] = response.meta.get('ville_link')
-        item['REGION_LINK'] = response.url
+        #item['REGION_LINK'] = response.url
 
         yield item
 
