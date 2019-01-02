@@ -13,8 +13,10 @@ BOT_NAME = 'residences_immobilier'
 
 SPIDER_MODULES = ['residences_immobilier.spiders']
 NEWSPIDER_MODULE = 'residences_immobilier.spiders'
+'''
 FEED_URI = '../data_residences_immobilier/%(name)s%(time)s.csv'
 FEED_FORMAT = 'csv'
+'''
 #LOG_FILE = 'logs/lefigaro.log',
 #LOG_LEVEL ='ERROR'
 #COOKIES_ENABLED = True
