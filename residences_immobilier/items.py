@@ -12,3 +12,4 @@ class ResidencesImmobilierItem(scrapy.Item):
     # define the fields for your item here like:
     VILLE_NAME = scrapy.Field()
     VILLE_LINK = scrapy.Field()
+    REGION_LINK = scrapy.Field()
