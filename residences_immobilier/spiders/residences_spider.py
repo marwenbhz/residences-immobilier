@@ -27,12 +27,16 @@ class ResidencesSpiderSpider(scrapy.Spider):
     def parse(self, response):
         print('PROCESSIGN...' + response.url)
 
-        villes = response.css('ul.departement > a::attr(href)').extract()
-        for i in range(0, len(villes)):
-            yield Request(villes[i], callback=self.parse_ville, meta={'link_ville' : villes[i]})
+        villes_link = response.css('ul.departement > a::attr(href)').extract()
+        villes_name = response.css('ul.departement > a::text').extract()
+
+
+        for i in range(0, len(villes_link)):
+            yield Request(villes_link[i], callback=self.parse_ville, meta={'ville_link' : villes_link[i], 'ville_name': villes_name[i]})
         
 
     def parse_ville(self, response):    
         item = ResidencesImmobilierItem()
         item['VILLE_LINK'] = response.url
+        item['VILLE_NAME'] = response.meta.get('ville_name')
         yield item
