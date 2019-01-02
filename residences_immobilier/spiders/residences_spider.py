@@ -23,3 +23,6 @@ class ResidencesSpiderSpider(scrapy.Spider):
 
     def parse(self, response):
         print('PROCESSIGN...' + response.url)
+
+        villes = response.css('ul.departement > a::attr(href)').extract()
+        print(response.status)
