@@ -6,6 +6,7 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+from fake_useragent import UserAgent
 
 
 class ResidencesImmobilierSpiderMiddleware(object):
@@ -101,3 +102,43 @@ class ResidencesImmobilierDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+logger = logging.getLogger(__name__)
+
+class RandomUserAgentMiddleware(object):
+    def __init__(self, crawler):
+        super(RandomUserAgentMiddleware, self).__init__()
+
+        fallback = crawler.settings.get('FAKEUSERAGENT_FALLBACK', None)
+        self.ua = UserAgent(fallback=fallback)
+        self.per_proxy = crawler.settings.get('RANDOM_UA_PER_PROXY', False)
+        self.ua_type = crawler.settings.get('RANDOM_UA_TYPE', 'random')
+        self.proxy2ua = {}
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(crawler)
+
+    def process_request(self, request, spider):
+        def get_ua():
+            '''Gets random UA based on the type setting (random, firefox…)'''
+            return getattr(self.ua, self.ua_type)
+        
+        if self.per_proxy:
+            proxy = request.meta.get('proxy')
+            if proxy not in self.proxy2ua:
+                self.proxy2ua[proxy] = get_ua()
+                logger.debug('Assign User-Agent %s to Proxy %s'
+                             % (self.proxy2ua[proxy], proxy))
+            request.headers.setdefault('User-Agent', self.proxy2ua[proxy])
+        else:
+            request.headers.setdefault('User-Agent', get_ua())
+
+    © 2019 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Help
+

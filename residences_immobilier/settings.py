@@ -64,7 +64,7 @@ DOWNLOAD_DELAY = 1
 DOWNLOADER_MIDDLEWARES = {
     #'residences_immobilier.middlewares.ResidencesImmobilierDownloaderMiddleware': 543,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+    'residences_immobilier.middleware.RandomUserAgentMiddleware': 400,
 }
 
 # Enable or disable extensions
