@@ -32,7 +32,7 @@ class ResidencesSpiderSpider(scrapy.Spider):
 
 
         for i in range(0, len(villes_link)):
-            yield Request(villes_link[i], callback=self.parse_ville, meta={'ville_link' : villes_link[i], 'ville_name': villes_name[i]})
+            yield Request(villes_link[i], callback=self.parse_ville, meta={'ville_link' : villes_link[i], 'ville_name': villes_name[i].strip()})
         
 
     def parse_ville(self, response):    
