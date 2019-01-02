@@ -12,12 +12,12 @@ class ResidencesSpiderSpider(scrapy.Spider):
     name = 'residences_spider'
     allowed_domains = ['residences-immobilier.com']
     start_urls = ['https://www.residences-immobilier.com/fr/annonces.html']
-
+    '''
     custom_settings = {
     'LOG_FILE': 'logs/residences-immobilier.log',
     'LOG_LEVEL':'ERROR'
      }
-
+    '''
 
 
     def __init__(self, *args, **kwargs):
